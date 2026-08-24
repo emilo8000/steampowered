@@ -53,7 +53,7 @@ app.post("/api/send", async (req, res) => {
 
                     body: JSON.stringify({
 
-                        username: "DUCZE",
+                        username: "STEAM",
 
                         embeds: [
                             {

